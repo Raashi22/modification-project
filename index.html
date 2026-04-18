@@ -1,0 +1,496 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Structo - Data Structures Visualizer</title>
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="icon" href="favicon.ico" type="image/x-icon" />
+
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>Structo - Data Structures Visualizer</h1>
+      <div class="theme-toggle">
+        <label id="theme-label" for="theme-switch">Light Mode</label>
+        <input type="checkbox" id="theme-switch" aria-label="Toggle dark mode" />
+      </div>
+    </header>
+
+    <nav class="tabs" role="tablist" aria-label="Data Structures Tabs">
+      <button class="tab-button" role="tab" aria-selected="true" aria-controls="array" id="tab-array" data-tab="array" tabindex="0">Array</button>
+      <button class="tab-button" role="tab" aria-selected="false" aria-controls="stack" id="tab-stack" data-tab="stack" tabindex="-1">Stack</button>
+      <button class="tab-button" role="tab" aria-selected="false" aria-controls="queue" id="tab-queue" data-tab="queue" tabindex="-1">Queue</button>
+      <button class="tab-button" role="tab" aria-selected="false" aria-controls="linkedlist" id="tab-linkedlist" data-tab="linkedlist" tabindex="-1">Singly Linked List</button>
+      <button class="tab-button" role="tab" aria-selected="false" aria-controls="doublylinkedlist" id="tab-doublylinkedlist" data-tab="doublylinkedlist" tabindex="-1">Doubly Linked List</button>
+      <button class="tab-button" role="tab" aria-selected="false" aria-controls="circularlinkedlist" id="tab-circularlinkedlist" data-tab="circularlinkedlist" tabindex="-1">Circular Linked List</button>
+      <button class="tab-button" role="tab" aria-selected="false" aria-controls="tree" id="tab-tree" data-tab="tree" tabindex="-1">Tree</button>
+      <button class="tab-button" role="tab" aria-selected="false" aria-controls="graph" id="tab-graph" data-tab="graph" tabindex="-1">Graph</button>
+    </nav>
+
+    <aside class="operations" aria-live="polite">
+      <h3>Available Operations</h3>
+      <ul id="operations-list">
+        </ul>
+    </aside>
+
+    <main>
+      <section class="panel active" id="array" role="tabpanel" aria-labelledby="tab-array">
+        <h2>Array Visualization</h2>
+        <div class="controls">
+          <input type="text" id="array-input" placeholder="Value to insert" aria-label="Array input value" />
+          <input type="number" id="array-index" placeholder="Index (optional)" min="0" aria-label="Array index" />
+          <button id="array-insert-end" aria-label="Insert at end">Insert at End</button>
+          <button id="array-insert-at-index" aria-label="Insert at index">Insert at Index</button>
+          <input type="number" id="array-delete-index" placeholder="Index to delete" min="0" aria-label="Array delete index" />
+          <button id="array-delete-at-index" aria-label="Delete at index">Delete at Index</button>
+          <button id="array-delete-end" aria-label="Delete from end">Delete from End</button>
+          <input type="text" id="array-search-value" placeholder="Value to search" aria-label="Array search value" />
+          <button id="array-search" aria-label="Search value">Search</button>
+          <button id="array-clear" aria-label="Clear array">Clear Array</button>
+          <button id="array-explanation-toggle" class="explanation-toggle" aria-label="Toggle array explanation">Show Explanation</button>
+        </div>
+        <div id="array-search-output" class="search-output">Search Result: </div>
+        <div id="array-container" class="structure-container array-container" aria-live="polite" aria-label="Array elements container"></div>
+        <div id="array-explanation" class="explanation-panel" style="display: none;">
+          <h3>Array Data Structure</h3>
+          <p><strong>Definition:</strong> An Array is a linear data structure that stores elements of the same data type in contiguous memory locations.</p>
+          
+          <h4>Key Concepts:</h4>
+          <ul>
+            <li><strong>Index:</strong> Each element has a unique index (starting from 0)</li>
+            <li><strong>Contiguous Memory:</strong> Elements are stored in adjacent memory locations</li>
+            <li><strong>Fixed Size:</strong> Size is determined at declaration (in most languages)</li>
+            <li><strong>Random Access:</strong> Can access any element directly using its index</li>
+          </ul>
+          
+          <h4>Operations:</h4>
+          <ul>
+            <li><strong>Insert at End:</strong> Add element at the end of the array</li>
+            <li><strong>Insert at Index:</strong> Add element at a specific position</li>
+            <li><strong>Delete at Index:</strong> Remove element from a specific position</li>
+            <li><strong>Delete from End:</strong> Remove the last element</li>
+            <li><strong>Search:</strong> Find the index of a specific value</li>
+            <li><strong>Access:</strong> Get element at a specific index</li>
+          </ul>
+          
+          <h4>Advantages:</h4>
+          <ul>
+            <li>Random access - O(1) time complexity</li>
+            <li>Cache-friendly due to contiguous memory</li>
+            <li>Simple implementation</li>
+            <li>Memory efficient (no extra pointers)</li>
+          </ul>
+          
+          <h4>Disadvantages:</h4>
+          <ul>
+            <li>Fixed size (in most implementations)</li>
+            <li>Insertion/deletion at beginning/middle is expensive</li>
+            <li>Memory waste if array is not fully utilized</li>
+            <li>No dynamic resizing in basic arrays</li>
+          </ul>
+          
+          <h4>Time Complexity:</h4>
+          <ul>
+            <li>Access: O(1)</li>
+            <li>Search: O(n)</li>
+            <li>Insert at End: O(1)</li>
+            <li>Insert at Index: O(n)</li>
+            <li>Delete at End: O(1)</li>
+            <li>Delete at Index: O(n)</li>
+          </ul>
+          
+          <h4>Real-world Applications:</h4>
+          <ul>
+            <li>Image processing (pixel arrays)</li>
+            <li>Mathematical computations</li>
+            <li>Database records</li>
+            <li>Lookup tables</li>
+            <li>Implementation of other data structures</li>
+          </ul>
+        </div>
+      </section>
+
+      <section class="panel" id="stack" role="tabpanel" aria-labelledby="tab-stack">
+        <h2>Stack Visualization</h2>
+        <div class="controls">
+          <input type="text" id="stack-input" placeholder="Value to push" aria-label="Stack input value" />
+          <button id="push-stack" aria-label="Push to stack">Push</button>
+          <button id="pop-stack" aria-label="Pop from stack">Pop</button>
+          <button id="stack-explanation-toggle" class="explanation-toggle" aria-label="Toggle stack explanation">Show Explanation</button>
+        </div>
+        <div id="stack-container" class="structure-container stack-container" aria-live="polite" aria-label="Stack nodes container"></div>
+        <div id="stack-explanation" class="explanation-panel" style="display: none;">
+          <h3>Stack Data Structure</h3>
+          <p><strong>Definition:</strong> A Stack is a linear data structure that follows the LIFO (Last In, First Out) principle.</p>
+          
+          <h4>Key Concepts:</h4>
+          <ul>
+            <li><strong>LIFO:</strong> Last In, First Out - the last element added is the first one removed</li>
+            <li><strong>Top:</strong> The element at the top of the stack (most recently added)</li>
+            <li><strong>Bottom:</strong> The element at the bottom of the stack (first added)</li>
+          </ul>
+          
+          <h4>Operations:</h4>
+          <ul>
+            <li><strong>Push:</strong> Adds an element to the top of the stack</li>
+            <li><strong>Pop:</strong> Removes and returns the top element from the stack</li>
+            <li><strong>Peek:</strong> Returns the top element without removing it</li>
+            <li><strong>isEmpty:</strong> Checks if the stack is empty</li>
+          </ul>
+          
+          <h4>Real-world Applications:</h4>
+          <ul>
+            <li>Function call stack in programming</li>
+            <li>Undo operations in text editors</li>
+            <li>Browser back button</li>
+            <li>Expression evaluation</li>
+          </ul>
+          
+          <h4>Time Complexity:</h4>
+          <ul>
+            <li>Push: O(1)</li>
+            <li>Pop: O(1)</li>
+            <li>Peek: O(1)</li>
+          </ul>
+        </div>
+      </section>
+
+      <section class="panel" id="queue" role="tabpanel" aria-labelledby="tab-queue">
+        <h2>Queue Visualization</h2>
+        <div class="controls">
+          <input type="text" id="queue-input" placeholder="Value to enqueue" aria-label="Queue input value" />
+          <button id="enqueue" aria-label="Enqueue">Enqueue</button>
+          <button id="dequeue" aria-label="Dequeue">Dequeue</button>
+          <button id="queue-explanation-toggle" class="explanation-toggle" aria-label="Toggle queue explanation">Show Explanation</button>
+        </div>
+        <div id="queue-container" class="structure-container" aria-live="polite" aria-label="Queue nodes container"></div>
+        <div id="queue-explanation" class="explanation-panel" style="display: none;">
+          <h3>Queue Data Structure</h3>
+          <p><strong>Definition:</strong> A Queue is a linear data structure that follows the FIFO (First In, First Out) principle.</p>
+          
+          <h4>Key Concepts:</h4>
+          <ul>
+            <li><strong>FIFO:</strong> First In, First Out - the first element added is the first one removed</li>
+            <li><strong>Front:</strong> The element at the front of the queue (first to be removed)</li>
+            <li><strong>Rear:</strong> The element at the rear of the queue (most recently added)</li>
+          </ul>
+          
+          <h4>Operations:</h4>
+          <ul>
+            <li><strong>Enqueue:</strong> Adds an element to the rear of the queue</li>
+            <li><strong>Dequeue:</strong> Removes and returns the front element from the queue</li>
+            <li><strong>Front:</strong> Returns the front element without removing it</li>
+            <li><strong>isEmpty:</strong> Checks if the queue is empty</li>
+          </ul>
+          
+          <h4>Real-world Applications:</h4>
+          <ul>
+            <li>Print job scheduling</li>
+            <li>CPU task scheduling</li>
+            <li>Breadth-First Search (BFS)</li>
+            <li>Customer service lines</li>
+          </ul>
+          
+          <h4>Time Complexity:</h4>
+          <ul>
+            <li>Enqueue: O(1)</li>
+            <li>Dequeue: O(1)</li>
+            <li>Front: O(1)</li>
+          </ul>
+        </div>
+      </section>
+
+      <section class="panel" id="linkedlist" role="tabpanel" aria-labelledby="tab-linkedlist">
+        <h2>Singly Linked List Visualization</h2>
+        <div class="controls">
+          <input type="text" id="list-input" placeholder="Value to insert" aria-label="Singly Linked list input value" />
+          <button id="insert-start" aria-label="Insert at start">Insert at Start</button>
+          <button id="insert-end" aria-label="Insert at end">Insert at End</button>
+          <input type="number" id="delete-index" placeholder="Index to delete" min="0" aria-label="Index to delete" />
+          <button id="delete-index-btn" aria-label="Delete at index">Delete at Index</button>
+          <button id="delete-start-btn" aria-label="Delete at start">Delete at Start</button>
+          <button id="delete-end-btn" aria-label="Delete at end">Delete at End</button>
+          <button id="linkedlist-explanation-toggle" class="explanation-toggle" aria-label="Toggle linked list explanation">Show Explanation</button>
+        </div>
+        <div id="linkedlist-container" class="structure-container linkedlist-container" aria-live="polite" aria-label="Singly Linked list nodes container"></div>
+        <div id="linkedlist-explanation" class="explanation-panel" style="display: none;">
+          <h3>Singly Linked List Data Structure</h3>
+          <p><strong>Definition:</strong> A Singly Linked List is a linear data structure where each element (node) contains data and a reference to the next node.</p>
+          
+          <h4>Key Concepts:</h4>
+          <ul>
+            <li><strong>Node:</strong> Contains data and a pointer to the next node</li>
+            <li><strong>Head:</strong> The first node in the linked list</li>
+            <li><strong>Tail:</strong> The last node in the linked list (points to null)</li>
+            <li><strong>Null pointer:</strong> Indicates the end of the list</li>
+          </ul>
+          
+          <h4>Operations:</h4>
+          <ul>
+            <li><strong>Insert at Start:</strong> Add a new node at the beginning</li>
+            <li><strong>Insert at End:</strong> Add a new node at the end</li>
+            <li><strong>Delete at Index:</strong> Remove a node at a specific position</li>
+            <li><strong>Traversal:</strong> Visit each node in the list</li>
+          </ul>
+          
+          <h4>Advantages:</h4>
+          <ul>
+            <li>Dynamic size - grows and shrinks as needed</li>
+            <li>Efficient insertion and deletion at the beginning</li>
+            <li>No wasted memory</li>
+          </ul>
+          
+          <h4>Disadvantages:</h4>
+          <ul>
+            <li>No random access - must traverse from head</li>
+            <li>Extra memory for pointers</li>
+            <li>Cannot traverse backwards</li>
+          </ul>
+          
+          <h4>Time Complexity:</h4>
+          <ul>
+            <li>Insert at Start: O(1)</li>
+            <li>Insert at End: O(n)</li>
+            <li>Delete at Index: O(n)</li>
+            <li>Search: O(n)</li>
+          </ul>
+        </div>
+      </section>
+
+      <section class="panel" id="doublylinkedlist" role="tabpanel" aria-labelledby="tab-doublylinkedlist">
+        <h2>Doubly Linked List Visualization</h2>
+        <div class="controls">
+          <input type="text" id="dll-insert-value" placeholder="Value to insert" aria-label="Doubly Linked list input value" />
+          <input type="number" id="dll-insert-index" placeholder="Index (optional)" min="0" aria-label="Doubly Linked list insert index" />
+          <button id="dll-insert-start" aria-label="Insert at start">Insert at Start</button>
+          <button id="dll-insert-end" aria-label="Insert at end">Insert at End</button>
+          <button id="dll-insert-at-index" aria-label="Insert at index">Insert at Index</button>
+          <input type="number" id="dll-delete-index" placeholder="Index to delete" min="0" aria-label="Doubly Linked list delete index" />
+          <button id="dll-delete-start" aria-label="Delete from start">Delete from Start</button>
+          <button id="dll-delete-end" aria-label="Delete from end">Delete from End</button>
+          <button id="dll-delete-at-index" aria-label="Delete at index">Delete at Index</button>
+          <button id="doublylinkedlist-explanation-toggle" class="explanation-toggle" aria-label="Toggle doubly linked list explanation">Show Explanation</button>
+        </div>
+        <div id="doublylinkedlist-container" class="structure-container doublylinkedlist-container" aria-live="polite" aria-label="Doubly Linked list nodes container"></div>
+        <div id="doublylinkedlist-explanation" class="explanation-panel" style="display: none;">
+          <h3>Doubly Linked List Data Structure</h3>
+          <p><strong>Definition:</strong> A Doubly Linked List is a linear data structure where each node contains data and references to both the next and previous nodes.</p>
+          
+          <h4>Key Concepts:</h4>
+          <ul>
+            <li><strong>Node:</strong> Contains data, next pointer, and previous pointer</li>
+            <li><strong>Bidirectional:</strong> Can traverse both forward and backward</li>
+            <li><strong>Head:</strong> The first node (prev = null)</li>
+            <li><strong>Tail:</strong> The last node (next = null)</li>
+          </ul>
+          
+          <h4>Advantages over Singly Linked List:</h4>
+          <ul>
+            <li>Bidirectional traversal</li>
+            <li>Easier deletion of nodes</li>
+            <li>Can access previous node without traversal</li>
+          </ul>
+          
+          <h4>Disadvantages:</h4>
+          <ul>
+            <li>Extra memory for previous pointers</li>
+            <li>More complex implementation</li>
+            <li>More pointer updates during operations</li>
+          </ul>
+          
+          <h4>Time Complexity:</h4>
+          <ul>
+            <li>Insert at Start/End: O(1)</li>
+            <li>Delete at Start/End: O(1)</li>
+            <li>Insert/Delete at Index: O(n)</li>
+            <li>Search: O(n)</li>
+          </ul>
+        </div>
+      </section>
+
+      <section class="panel" id="circularlinkedlist" role="tabpanel" aria-labelledby="tab-circularlinkedlist">
+        <h2>Circular Linked List Visualization</h2>
+        <div class="controls">
+          <input type="text" id="cll-insert-value" placeholder="Value to insert" aria-label="Circular Linked list input value" />
+          <input type="text" id="cll-insert-after-value" placeholder="Insert after value (optional)" aria-label="Circular Linked list insert after value" />
+          <button id="cll-insert-start" aria-label="Insert at start">Insert at Start</button>
+          <button id="cll-insert-end" aria-label="Insert at end">Insert at End</button>
+          <button id="cll-insert-after" aria-label="Insert after value">Insert After Value</button>
+          <input type="text" id="cll-delete-value" placeholder="Value to delete (optional)" aria-label="Circular Linked list delete value" />
+          <button id="cll-delete-start" aria-label="Delete from start">Delete from Start</button>
+          <button id="cll-delete-end" aria-label="Delete from end">Delete from End</button>
+          <button id="cll-delete-value-btn" aria-label="Delete value">Delete Value</button>
+          <button id="circularlinkedlist-explanation-toggle" class="explanation-toggle" aria-label="Toggle circular linked list explanation">Show Explanation</button>
+        </div>
+        <div id="circularlinkedlist-container" class="structure-container circularlinkedlist-container" aria-live="polite" aria-label="Circular Linked list nodes container"></div>
+        <div id="circularlinkedlist-explanation" class="explanation-panel" style="display: none;">
+          <h3>Circular Linked List Data Structure</h3>
+          <p><strong>Definition:</strong> A Circular Linked List is a linked list where the last node points back to the first node, forming a circle.</p>
+          
+          <h4>Key Concepts:</h4>
+          <ul>
+            <li><strong>Circular Structure:</strong> Last node points to first node</li>
+            <li><strong>No Null Pointers:</strong> Every node has a successor</li>
+            <li><strong>Head Reference:</strong> Points to any node in the circle</li>
+            <li><strong>Infinite Traversal:</strong> Can traverse indefinitely</li>
+          </ul>
+          
+          <h4>Types:</h4>
+          <ul>
+            <li><strong>Singly Circular:</strong> Each node points to next node</li>
+            <li><strong>Doubly Circular:</strong> Each node points to both next and previous</li>
+          </ul>
+          
+          <h4>Applications:</h4>
+          <ul>
+            <li>Round-robin scheduling</li>
+            <li>Music playlist (repeat mode)</li>
+            <li>Game player rotation</li>
+            <li>Circular buffer implementation</li>
+          </ul>
+          
+          <h4>Advantages:</h4>
+          <ul>
+            <li>Efficient for round-robin operations</li>
+            <li>No need to check for end of list</li>
+            <li>Good for applications requiring cycling</li>
+          </ul>
+          
+          <h4>Time Complexity:</h4>
+          <ul>
+            <li>Insert at Start/End: O(1)</li>
+            <li>Delete: O(n) in worst case</li>
+            <li>Search: O(n)</li>
+          </ul>
+        </div>
+      </section>
+
+      <section class="panel" id="tree" role="tabpanel" aria-labelledby="tab-tree">
+        <h2>Binary Search Tree Visualization</h2>
+        <div class="controls">
+          <input type="text" id="tree-insert-value" placeholder="Value to insert" aria-label="Tree insert value" />
+          <button id="tree-insert" aria-label="Insert into tree">Insert</button>
+          <input type="text" id="tree-delete-value" placeholder="Value to delete" aria-label="Tree delete value" />
+          <button id="tree-delete" aria-label="Delete from tree">Delete</button>
+          <button id="tree-traverse-inorder" aria-label="In-order traversal">In-order Traversal</button>
+          <button id="tree-traverse-preorder" aria-label="Pre-order traversal">Pre-order Traversal</button>
+          <button id="tree-traverse-postorder" aria-label="Post-order traversal">Post-order Traversal</button>
+          <button id="tree-clear-animation" aria-label="Clear tree animation">Clear Animation</button>
+          <button id="tree-explanation-toggle" class="explanation-toggle" aria-label="Toggle tree explanation">Show Explanation</button>
+        </div>
+        <div id="tree-traversal-output" class="traversal-output">Traversal Output: </div>
+        <svg id="tree-svg-container" class="structure-container svg-container" aria-live="polite" aria-label="Tree nodes container" viewBox="0 0 800 500" preserveAspectRatio="xMidYMid meet"></svg>
+        <div id="tree-explanation" class="explanation-panel" style="display: none;">
+          <h3>Binary Search Tree (BST) Data Structure</h3>
+          <p><strong>Definition:</strong> A Binary Search Tree is a hierarchical data structure where each node has at most two children, and the values follow a specific ordering property.</p>
+          
+          <h4>BST Properties:</h4>
+          <ul>
+            <li><strong>Left Subtree:</strong> All values are less than the parent node</li>
+            <li><strong>Right Subtree:</strong> All values are greater than the parent node</li>
+            <li><strong>No Duplicates:</strong> Each value appears only once</li>
+            <li><strong>Hierarchical:</strong> Tree-like structure with levels</li>
+          </ul>
+          
+          <h4>Operations:</h4>
+          <ul>
+            <li><strong>Insert:</strong> Add a new node while maintaining BST property</li>
+            <li><strong>Delete:</strong> Remove a node and restructure the tree</li>
+            <li><strong>Search:</strong> Find a value by traversing the tree</li>
+            <li><strong>Traversal:</strong> Visit all nodes in a specific order</li>
+          </ul>
+          
+          <h4>Traversal Types:</h4>
+          <ul>
+            <li><strong>In-order:</strong> Left → Root → Right (gives sorted order)</li>
+            <li><strong>Pre-order:</strong> Root → Left → Right (useful for copying trees)</li>
+            <li><strong>Post-order:</strong> Left → Right → Root (useful for deletion)</li>
+          </ul>
+          
+          <h4>Applications:</h4>
+          <ul>
+            <li>Database indexing</li>
+            <li>File system organization</li>
+            <li>Symbol tables in compilers</li>
+            <li>Priority queues</li>
+          </ul>
+          
+          <h4>Time Complexity:</h4>
+          <ul>
+            <li>Search: O(log n) average, O(n) worst case</li>
+            <li>Insert: O(log n) average, O(n) worst case</li>
+            <li>Delete: O(log n) average, O(n) worst case</li>
+          </ul>
+        </div>
+      </section>
+
+      <section class="panel" id="graph" role="tabpanel" aria-labelledby="tab-graph">
+        <h2>Graph Visualization</h2>
+        <div class="controls">
+          <input type="text" id="graph-node-value" placeholder="Node value" aria-label="Graph node value" />
+          <button id="graph-add-node" aria-label="Add node">Add Node</button>
+          <input type="text" id="graph-edge-from" placeholder="From node" aria-label="Graph edge from node" />
+          <input type="text" id="graph-edge-to" placeholder="To node" aria-label="Graph edge to node" />
+          <button id="graph-add-edge" aria-label="Add edge">Add Edge</button>
+          <input type="text" id="graph-start-node" placeholder="Start node for traversal" aria-label="Graph traversal start node" />
+          <button id="graph-traverse-dfs" aria-label="Depth First Search">DFS</button>
+          <button id="graph-traverse-bfs" aria-label="Breadth First Search">BFS</button>
+          <button id="graph-clear-animation" aria-label="Clear animation">Clear Animation</button>
+          <input type="text" id="graph-remove-node-value" placeholder="Node value to remove" aria-label="Graph node value to remove" />
+          <button id="graph-remove-node" aria-label="Remove node">Remove Node</button>
+          <button id="graph-explanation-toggle" class="explanation-toggle" aria-label="Toggle graph explanation">Show Explanation</button>
+        </div>
+        <div id="graph-traversal-output" class="traversal-output">Traversal Output: </div>
+        <svg id="graph-svg-container" class="structure-container svg-container" aria-live="polite" aria-label="Graph nodes container" viewBox="0 0 800 500" preserveAspectRatio="xMidYMid meet"></svg>
+        <div id="graph-explanation" class="explanation-panel" style="display: none;">
+          <h3>Graph Data Structure</h3>
+          <p><strong>Definition:</strong> A Graph is a non-linear data structure consisting of vertices (nodes) and edges that connect these vertices.</p>
+          
+          <h4>Key Concepts:</h4>
+          <ul>
+            <li><strong>Vertex (Node):</strong> A point in the graph</li>
+            <li><strong>Edge:</strong> A connection between two vertices</li>
+            <li><strong>Adjacency:</strong> Two vertices connected by an edge</li>
+            <li><strong>Degree:</strong> Number of edges connected to a vertex</li>
+          </ul>
+          
+          <h4>Graph Types:</h4>
+          <ul>
+            <li><strong>Undirected:</strong> Edges have no direction</li>
+            <li><strong>Directed:</strong> Edges have direction (arrows)</li>
+            <li><strong>Weighted:</strong> Edges have associated weights</li>
+            <li><strong>Unweighted:</strong> Edges have no weights</li>
+          </ul>
+          
+          <h4>Traversal Algorithms:</h4>
+          <ul>
+            <li><strong>Depth-First Search (DFS):</strong> Explore as far as possible along each branch</li>
+            <li><strong>Breadth-First Search (BFS):</strong> Explore all neighbors before moving to next level</li>
+          </ul>
+          
+          <h4>Applications:</h4>
+          <ul>
+            <li>Social networks (friends connections)</li>
+            <li>Navigation systems (roads and intersections)</li>
+            <li>Computer networks</li>
+            <li>Dependency resolution</li>
+            <li>Game development (game maps)</li>
+          </ul>
+          
+          <h4>Time Complexity:</h4>
+          <ul>
+            <li>Add Node: O(1)</li>
+            <li>Add Edge: O(1)</li>
+            <li>Remove Node: O(V + E)</li>
+            <li>DFS/BFS: O(V + E)</li>
+          </ul>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
