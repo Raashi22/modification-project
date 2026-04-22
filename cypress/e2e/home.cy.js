@@ -2,16 +2,13 @@ describe("Array Visualizer Simple Test", () => {
 
   it("Page loads successfully", () => {
 
-    cy.visit("/ArrayVisualizer.tsx")
-
-    cy.contains("Array")
+    cy.visit("/array")
 
   })
 
-
   it("Insert value into array", () => {
 
-    cy.visit("/ArrayVisualizer")
+    cy.visit("/array")
 
     cy.get('input[placeholder="Value to insert"]')
       .first()
