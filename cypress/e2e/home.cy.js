@@ -2,15 +2,18 @@ describe("Array Test", () => {
 
   it("Insert value", () => {
 
-    cy.visit("/")   // ✅ correct
+    cy.visit("/")
 
     cy.get('input[placeholder="Value to insert"]')
       .first()
       .type("10")
 
-    cy.contains("Insert").click()
+    cy.contains("Insert at End")
+      .click()
 
-    cy.contains("10")
+    cy.wait(1000)
+
+    cy.contains("10").should("exist")
 
   })
 
